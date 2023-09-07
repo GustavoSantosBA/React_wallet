@@ -1,0 +1,10 @@
+.headerConteiner{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid silver;
+}
+
+.navBarContainer{
+    padding-top: 6px;
+    padding-right: 5px;    
+}

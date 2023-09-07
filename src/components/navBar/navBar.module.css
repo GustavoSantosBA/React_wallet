@@ -1,0 +1,19 @@
+/* Estilo básico da navBar */
+nav {
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Estilo dos links */
+nav a {
+    color: black; /* Cor do texto dos links */
+    font-weight: 500;
+    text-decoration: none; /* Remover sublinhado padrão dos links */
+    padding: 10px 20px; /* Espaçamento interno horizontal e vertical */
+    margin-right: 10px; /* Espaçamento entre os links */
+    transition: transform 10s; /* Transição de efeito de zoom */
+}
+
+/* Efeito de zoom nos links quando o mouse estiver sobre eles */
+nav a:hover {
+    font-weight: bolder;
+}
