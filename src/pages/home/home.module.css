@@ -2,3 +2,11 @@
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
+.baseCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
