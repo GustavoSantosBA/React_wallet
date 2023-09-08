@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import './navBar.module.css'
 import { useState } from 'react';
-import NotificacoesModal from '../notificacoes';
+import { UseNotifyAPI } from './useNotifyApi';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export function NavBar() {
+  const { data } = UseNotifyAPI<NotifyModel[]>()
 
-  const [showModal, setShowModal] = useState(false);
-  const showInitialModal = true;
+  const [show, setShow] = useState(false);
 
-  const openModal = () => {
-    setShowModal(true);
-  }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -19,9 +20,34 @@ export function NavBar() {
         <Link to="/usuarios">Usuários</Link>
         <Link to="/carteira">Carteiras</Link>
         <Link to="/sobre">Sobre</Link>
-        <button onClick={openModal}>Abrir Modal</button>
+        <button onClick={handleShow}>Abrir Modal</button>
       </nav>
-      {showModal && <NotificacoesModal initialShow={showInitialModal} />}
+      <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Body>
+                    <h4 style={{ textAlign: 'center' }}>Notificações do Sistema</h4>
+                    <hr />
+                    <ul>
+                        {data?.map(r => {
+                            return (
+                                <li key={r.id}>
+                                    <span style={{ fontWeight: 'bolder' }}>{r.title}</span>
+                                    <p>{r.body}</p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Fechar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
     </>
   )
 }
